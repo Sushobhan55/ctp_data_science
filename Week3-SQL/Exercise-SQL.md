@@ -83,13 +83,13 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 	```
 	WITH temp_table as
 	(SELECT CAST(week_start_date AS STRING) AS week_start_date_string, spend_usd FROM `bigquery-public-data.google_political_ads.advertiser_weekly_spend`)
-  -- Created a temp table with date as string
+  	-- Created a temp table with date as string
 	SELECT week_start_date_string, SUM(spend_usd) as sum_spend_usd FROM temp_table
 	WHERE week_start_date_string LIKE '201%-08-%'
-  -- Extracted dates with 08 for month
-  GROUP BY week_start_date_string
-  ORDER BY CAST(week_start_date_string AS DATE)
-  -- Converted the week_string to date format, and sorted by the date
+	  -- Extracted dates with 08 for month
+  	GROUP BY week_start_date_string
+  	ORDER BY CAST(week_start_date_string AS DATE)
+  	-- Converted the week_string to date format, and sorted by the date
 	```
 	13487700
 6.  How many ads did the 'TOM STEYER 2020' campaign run? (No need to insert query here, just type in the answer.)
