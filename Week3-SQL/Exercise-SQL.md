@@ -113,10 +113,10 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 	``` 
 	SELECT advertiser_name FROM `bigquery-public-data.google_political_ads.advertiser_weekly_spend`
 	GROUP BY advertiser_name
-  HAVING AVG(spend_usd) >0
-  ORDER BY AVG(spend_usd)
-  LIMIT 1  
-  -- Assuming each observation represents a unique advertisement
+ 	HAVING AVG(spend_usd) >0
+  	ORDER BY AVG(spend_usd)
+  	LIMIT 1  
+  	-- Assuming each observation represents a unique advertisement
 	```
 ## For this next section, use the `new_york_citibike` datasets.
 
@@ -133,14 +133,14 @@ For this section of the exercise we will be using the `bigquery-public-data.aust
 3. Write a query that, for every station_name, has the amount of trips that started there and the amount of trips that ended there. (Hint, use two temporary tables, one that counts the amount of starts, the other that counts the number of ends, and then join the two.) 
 	```
 	WITH T as 
-(SELECT start_station_name, COUNT(*) AS no_of_starts FROM `bigquery-public-data.new_york_citibike.citibike_trips` 
-GROUP BY start_station_name)
-, TT as
-(SELECT end_station_name, COUNT(*) AS no_of_ends FROM `bigquery-public-data.new_york_citibike.citibike_trips` 
-GROUP BY end_station_name)
-SELECT start_station_name as station_name, T.no_of_starts, TT.no_of_ends  FROM T
-FULL OUTER JOIN TT
-ON T.start_station_name = TT.end_station_name
+	(SELECT start_station_name, COUNT(*) AS no_of_starts FROM `bigquery-public-data.new_york_citibike.citibike_trips` 
+	GROUP BY start_station_name)
+	, TT as
+	(SELECT end_station_name, COUNT(*) AS no_of_ends FROM `bigquery-public-data.new_york_citibike.citibike_trips` 
+	GROUP BY end_station_name)
+	SELECT start_station_name as station_name, T.no_of_starts, TT.no_of_ends  FROM T
+	FULL OUTER JOIN TT
+	ON T.start_station_name = TT.end_station_name
 	```
 # The next section is the Google Colab section.  
 1. Open up this [this Colab notebook](https://colab.research.google.com/drive/1kHdTtuHTPEaMH32GotVum41YVdeyzQ74?usp=sharing).
